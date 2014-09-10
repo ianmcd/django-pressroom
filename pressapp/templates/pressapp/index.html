@@ -1,0 +1,16 @@
+{% if press_list %}
+  <ul>
+    {% for press in press_list %}
+      <li>
+      {% if not press.article_source %}
+        <strong>Press Release: </strong>
+        <a href="{{ press.slug }}">{{ press.title }}</a><br />
+      {% else %}
+        <a href="{{ press.article_url }}">{{ press.title }}</a>
+        {{ press.source }}<br />
+      {% endif %}
+      {{ press.published_date }}
+    </li><br />
+    {% endfor %}
+  </ul>
+{% endif %}
