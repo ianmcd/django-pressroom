@@ -1,4 +1,5 @@
 from django.db import models
+from filer.fields.image import FilerImageField
 
 class InTheNews(models.Model):
   title = models.CharField(max_length=200)
@@ -10,8 +11,11 @@ class InTheNews(models.Model):
   def __unicode__(self):
     return self.title
 
-  def source(self):
+  def source_name(self):
     return "\n".join([z.source_name for z in self.article_source.all()])
+
+  def source_image(self):
+    return "\n".join([x.source_logo.url for x in self.article_source.all()])
 
 class PressRelease(models.Model):
   title = models.CharField(max_length=200)
@@ -26,6 +30,7 @@ class PressRelease(models.Model):
 class NewsSource(models.Model):
   #need to add image import/upload stuff here..
   source_name = models.CharField(max_length=200)
+  source_logo = FilerImageField(null=True, blank=True)
 
   class Meta:
     ordering = ["source_name"]

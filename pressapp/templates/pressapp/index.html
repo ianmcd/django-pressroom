@@ -3,14 +3,16 @@
     {% for press in press_list %}
       <li>
       {% if not press.article_source %}
+        <figure></figure>
         <strong>Press Release: </strong>
-        <a href="{{ press.slug }}">{{ press.title }}</a><br />
+        <a href="{{ press.slug }}">{{ press.title }}</a>
       {% else %}
+        <figure><img src="{{ press.source_image }}" /></figure>
         <a href="{{ press.article_url }}">{{ press.title }}</a>
-        {{ press.source }}<br />
+        {{ press.source_name }}
       {% endif %}
       {{ press.published_date }}
-    </li><br />
+    </li>
     {% endfor %}
   </ul>
 {% endif %}

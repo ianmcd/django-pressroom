@@ -7,7 +7,7 @@ class NewsAdmin(admin.ModelAdmin):
     ('Source Details', {'fields': ['article_url', 'article_source']})
   ]
 
-  list_display = ('title', 'source', 'published_date')
+  list_display = ('title', 'source_name', 'published_date')
   search_fields = ['title']
 
 
